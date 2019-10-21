@@ -39,18 +39,12 @@ class Sprite
 	public Image getImage() { return image; }	
 
 	public boolean overlaps(Sprite s){
-		if(s instanceof RobberAuto){
-			for(int x = 0; x<60;x++){
-				if(getX()+x == s.getX()+x){
-					System.out.println("Overlap");
-					return true;
-				}
-
-				if(getY()+x == s.getY()+x){
-					System.out.println("Overlap");
-					return true;
-				}
+		if((getX()-60 < s.getX() && s.getX() < getX()+60) 
+		&& (getY()-60 < s.getY() && s.getY() < getY()+60)){
+			if(s instanceof RobberAuto){
+				System.out.println("Gotcha!");
 			}
+			return true;
 		}
 		return false;
 	}

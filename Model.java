@@ -52,15 +52,14 @@ class Model
 
     public void updateScene(int w, int h){
       	for(int i = 1; i<sprite.size();i++){
-
           if(sprite.get(i) instanceof CopAuto){
             for(int j = 1; j<sprite.size(); j++){
               sprite.get(i).overlaps(sprite.get(j));
             }
           }
-
           sprite.get(i).updateState(w, h);
         }
     }
 
+    
 }
