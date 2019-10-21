@@ -1,15 +1,6 @@
 /*
 Name: Rylan McAlsiter
 Date: 8-10-19
-Description: This program will open a window with a cop car driving around first.
-When the left mouse is clicked, a red car will drive around the screen.
-Clicking again will make a cop car. Clicking more will alternate between red and cop.
-
-The cars will drive till they run out of gas.
-
-Right clicking will refill all the car's gas tanks and they will continue driving.
-
-The program will close when the user hits the x at the top right
 */
 
 import java.awt.Graphics;
@@ -46,8 +37,29 @@ class Sprite
         }
 	}
 	public Image getImage() { return image; }	
+
+	public boolean overlaps(Sprite s){
+		if(s instanceof RobberAuto){
+			for(int x = 0; x<60;x++){
+				if(getX()+x == s.getX()+x){
+					System.out.println("Overlap");
+					return true;
+				}
+
+				if(getY()+x == s.getY()+x){
+					System.out.println("Overlap");
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
-	public void update(Graphics g) {
+	public void updateImage(Graphics g) {
 		g.drawImage(getImage(), getX(), getY(), 60, 60, null);
+	}
+
+	public void updateState(int w, int h){
+		//empty for now
 	}
 }

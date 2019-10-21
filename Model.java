@@ -1,15 +1,6 @@
 /*
 Name: Rylan McAlsiter
 Date: 8-10-19
-Description: This program will open a window with a cop car driving around first.
-When the left mouse is clicked, a red car will drive around the screen.
-Clicking again will make a cop car. Clicking more will alternate between red and cop.
-
-The cars will drive till they run out of gas.
-
-Right clicking will refill all the car's gas tanks and they will continue driving.
-
-The program will close when the user hits the x at the top right
 */
 
 import java.awt.Graphics;
@@ -24,8 +15,8 @@ class Model
 
     Model() throws IOException {
       sprite = new ArrayList<Sprite>();
-      type = 1;
-      sprite.add(new CopAuto());
+      type = 0; //0 spawns cop first, 1 spawns robber first
+      sprite.add(new Bank());
     }
 
     public void addSprite(int x, int y){
@@ -45,19 +36,31 @@ class Model
       //Places sprite where the mouse is clicked.
       sprite.get(sprite.size()-1).setX(x);
       sprite.get(sprite.size()-1).setY(y);
+
+      if(e instanceof RobberAuto){
+        sprite.get(sprite.size()-1).setX(300);
+        sprite.get(sprite.size()-1).setY(300);
+      }
     }
 
     public void update(Graphics g){
       //Allows each of the autos to be displayed.
       for(Sprite s : sprite){
-        s.update(g);
+        s.updateImage(g);
       }
     }
 
-    public void fillUps(){
-      			for(int i = 0; 0<sprite.size();i++){
-                ((Auto) sprite.get(i)).fillUp();
+    public void updateScene(int w, int h){
+      	for(int i = 1; i<sprite.size();i++){
+
+          if(sprite.get(i) instanceof CopAuto){
+            for(int j = 1; j<sprite.size(); j++){
+              sprite.get(i).overlaps(sprite.get(j));
             }
+          }
+
+          sprite.get(i).updateState(w, h);
+        }
     }
 
 }
