@@ -17,6 +17,7 @@ public class View extends JFrame implements ActionListener {
         MyPanel(Controller c) {
             controller = c;
             addMouseListener(c);
+
         }
 
         public void paintComponent(Graphics g) {
@@ -30,6 +31,8 @@ public class View extends JFrame implements ActionListener {
         setTitle("Assignment 4");
         setSize(1000, 700);
         getContentPane().add(new MyPanel(c));
+        addKeyListener(c);
+        setFocusable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }

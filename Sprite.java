@@ -41,18 +41,11 @@ class Sprite
 	public boolean overlaps(Sprite s){
 		if((getX()-60 < s.getX() && s.getX() < getX()+60) 
 		&& (getY()-60 < s.getY() && s.getY() < getY()+60)){
-			if(s instanceof RobberAuto && !s.isCaptured()){
-				System.out.println("Gotcha!");
-				s.captured();
-			}
 			return true;
 		}
 		return false;
 	}
 	
-	public void captured(){		}
-	public boolean isCaptured(){	return false;	}
-
 	public void updateImage(Graphics g) {
 		g.drawImage(getImage(), getX(), getY(), 60, 60, null);
 	}

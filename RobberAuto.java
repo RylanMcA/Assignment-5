@@ -10,8 +10,8 @@ public class RobberAuto extends Auto{
     private int xRatio;
     private int yRatio;
     private boolean cap;
-    private static int captures;
     private boolean esc;
+    private static int captures;
     private static int escaped;
 
     public RobberAuto(){
@@ -20,31 +20,32 @@ public class RobberAuto extends Auto{
         this.xRatio = rand.nextInt(11)-5;
         this.yRatio = rand.nextInt(11)-5;
         this.cap = false;
-        this.captures = 0;
         this.esc = false;
-        this.escaped = 0;
         this.fillUp();
     }
 
-    @Override
     public void updateImage(Graphics g){
         super.updateImage(g);
     }
 
-    @Override
     public void captured(){
-        setImage("jail.jpg");
-        this.cap = true;
-        captures++;
+        if(!this.cap){
+            setImage("jail.jpg");
+            this.cap = true;
+            captures++;
+        }
     }
 
-    @Override
     public boolean isCaptured(){
         return this.cap;
     }
 
     public boolean hasEscaped(){
         return this.esc;
+    }
+
+    public void printScores(){
+        System.out.println("Captured: "+captures+"\nEscaped: "+escaped);
     }
 
     @Override

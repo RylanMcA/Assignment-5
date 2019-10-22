@@ -6,11 +6,13 @@ Date: 8-10-19
 import java.awt.Graphics;
 import java.io.IOException;
 import java.awt.event.MouseListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyListener;
 import javax.swing.Timer;
 import javax.swing.SwingUtilities;
 
-class Controller implements MouseListener
+class Controller implements MouseListener, KeyListener
 {
     Model model;
     View view;
@@ -38,6 +40,17 @@ class Controller implements MouseListener
     public void mouseEntered(MouseEvent e) {    }
     public void mouseExited(MouseEvent e) {    }
     public void mouseClicked(MouseEvent e) {    }
+
+    public void keyTyped(KeyEvent e){
+        if(e.getKeyChar() == 'n'){
+            RobberAuto car = new RobberAuto();
+            car.printScores();
+            car = null;
+        }
+    }
+
+    public void keyReleased(KeyEvent e){      }
+    public void keyPressed(KeyEvent e){       }
 
     public static void main(String[] args) throws Exception {
         new Controller();
