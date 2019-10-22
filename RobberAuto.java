@@ -11,8 +11,8 @@ public class RobberAuto extends Auto{
     private int yRatio;
     private boolean cap;
     private boolean esc;
-    private static int captures;
-    private static int escaped;
+    public static int captures;
+    public static int escaped;
 
     public RobberAuto(){
         super("Robber Car", 5000, new Engine("MACH 4", 20, 200), "red-auto.jpg");
@@ -44,9 +44,6 @@ public class RobberAuto extends Auto{
         return this.esc;
     }
 
-    public void printScores(){
-        System.out.println("Captured: "+captures+"\nEscaped: "+escaped);
-    }
 
     @Override
     public void updateState(int w, int h){

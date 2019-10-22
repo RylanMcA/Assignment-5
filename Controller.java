@@ -43,9 +43,7 @@ class Controller implements MouseListener, KeyListener
 
     public void keyTyped(KeyEvent e){
         if(e.getKeyChar() == 'n'){
-            RobberAuto car = new RobberAuto();
-            car.printScores();
-            car = null;
+            System.out.println("Captured: "+RobberAuto.captures+"\nEscaped: "+RobberAuto.escaped);
         }
     }
 
