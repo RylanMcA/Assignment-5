@@ -6,6 +6,7 @@ Date: 8-10-19
 import java.awt.Graphics;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 class Model
@@ -51,15 +52,12 @@ class Model
     }
 
     public void updateScene(int w, int h){
-      	for(int i = 1; i<sprite.size();i++){
-          if(sprite.get(i) instanceof CopAuto){
-            for(int j = 1; j<sprite.size(); j++){
-              sprite.get(i).overlaps(sprite.get(j));
-            }
-          }
-          sprite.get(i).updateState(w, h);
-        }
+      Iterator iter = this.sprite.iterator();
+      while(iter.hasNext()){
+        Sprite s = (Sprite) iter.next();
+        s.overlaps((Sprite) iter.next());
+
+      }
     }
 
-    
 }
