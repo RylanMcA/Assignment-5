@@ -50,6 +50,6 @@ public class CopAuto extends Auto{
         }
 
         //Drive the car the distance.
-        this.drive(40, this.pXRatio, this.pYRatio);
+        this.drive(2, this.pXRatio, this.pYRatio);
 	}
 }

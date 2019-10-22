@@ -70,7 +70,7 @@ public class RobberAuto extends Auto{
         }
 
         if(!cap){
-            this.drive(40, this.xRatio, this.yRatio);
+            this.drive(4, this.xRatio, this.yRatio);
         }
 
 	}

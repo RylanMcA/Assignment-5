@@ -45,6 +45,11 @@ class Controller implements MouseListener, KeyListener
         if(e.getKeyChar() == 'n'){
             System.out.println("Captured: "+RobberAuto.captures+"\nEscaped: "+RobberAuto.escaped);
         }
+        
+        if(e.getKeyChar() == 'r'){
+            model.initialize();
+            view.repaint();
+        }
     }
 
     public void keyReleased(KeyEvent e){      }

@@ -55,28 +55,37 @@ class Model
       Iterator iter = this.sprite.iterator();
       while(iter.hasNext()){
         Sprite s = (Sprite) iter.next();
-        if(s instanceof CopAuto){
 
+        if(s instanceof CopAuto){
           Iterator iter2 = this.sprite.iterator();
+
           while(iter2.hasNext()){
             Sprite s2 = (Sprite) iter2.next();
+
             if(s.overlaps(s2) && s2 instanceof RobberAuto
             && !((RobberAuto) s2).isCaptured() ){
               ((RobberAuto) s2).captured();
             }
           }
         }
+
         if(s instanceof RobberAuto){
           if(((RobberAuto) s).hasEscaped()){
             iter.remove();
           }
-
-
         }
-
 
         s.updateState(w,h);
       }
     }
+
+
+    public void initialize(){
+      sprite = null;
+      sprite = new ArrayList<Sprite>();
+      type = 0; //0 spawns cop first, 1 spawns robber first
+      sprite.add(new Bank());
+    }
+
 
 }
