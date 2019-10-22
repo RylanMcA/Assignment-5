@@ -52,7 +52,9 @@ public class RobberAuto extends Auto{
                 System.out.println("Escaped!");
                 escaped++;
                 this.esc = true;
-            }else if(getX()+60 > w){
+            }
+            
+            if(getX()+60 > w){
                 System.out.println("Escaped!");
                 escaped++;
                 this.esc = true;
@@ -62,7 +64,9 @@ public class RobberAuto extends Auto{
                 System.out.println("Escaped!");
                 escaped++;
                 this.esc = true;
-            }else if(getY()+60 > h){
+            } 
+            
+            if(getY()+60 > h){
                 System.out.println("Escaped!");
                 escaped++;
                 this.esc = true;

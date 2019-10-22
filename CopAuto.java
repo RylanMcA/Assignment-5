@@ -39,13 +39,17 @@ public class CopAuto extends Auto{
         //Checks for bouncing
         if(getX() < 0 ){
             pXRatio *= -1;
-        }else if(getX()+60 > w){
+        }
+        
+        if(getX()+60 > w){
             pXRatio *= -1;
         }
         
         if(getY() < 0 ){
             pYRatio *= -1;
-        }else if(getY()+60 > h){
+        }
+        
+        if(getY()+60 > h){
             pYRatio *= -1;
         }
 
