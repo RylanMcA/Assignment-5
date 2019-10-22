@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyListener;
 import javax.swing.Timer;
 import javax.swing.SwingUtilities;
+import java.lang.Thread;
 
 class Controller implements MouseListener, KeyListener
 {
@@ -33,7 +34,7 @@ class Controller implements MouseListener, KeyListener
 		} else if (SwingUtilities.isRightMouseButton(e))  {
             model.updateScene(view.getWidth(), view.getHeight());
             view.repaint();
-		}
+        }
     }
 
     public void mouseReleased(MouseEvent e) {    }
@@ -44,11 +45,16 @@ class Controller implements MouseListener, KeyListener
     public void keyTyped(KeyEvent e){
         if(e.getKeyChar() == 'n'){
             System.out.println("Captured: "+RobberAuto.captures+"\nEscaped: "+RobberAuto.escaped);
-        }
-        
-        if(e.getKeyChar() == 'r'){
+
+        } else if(e.getKeyChar() == 'r'){
+            RobberAuto.captures = 0;
+            RobberAuto.escaped = 0;
             model.initialize();
             view.repaint();
+
+        } else if(e.getKeyChar() == 's'){
+            Thread thread = new Thread(new SpriteMover(model,view));
+            thread.start();
         }
     }
 

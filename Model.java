@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
+
 class Model
 {
     public ArrayList<Sprite> sprite;
@@ -46,36 +47,40 @@ class Model
 
     public void update(Graphics g){
       //Allows each of the autos to be displayed.
-      for(Sprite s : sprite){
-        s.updateImage(g);
+      synchronized(sprite){
+        for(Sprite s : sprite){
+          s.updateImage(g);
+        }
       }
     }
 
     public void updateScene(int w, int h){
-      Iterator iter = this.sprite.iterator();
-      while(iter.hasNext()){
-        Sprite s = (Sprite) iter.next();
+      synchronized(sprite){
+        Iterator iter = this.sprite.iterator();
+        while(iter.hasNext()){
+          Sprite s = (Sprite) iter.next();
 
-        if(s instanceof CopAuto){
-          Iterator iter2 = this.sprite.iterator();
+          if(s instanceof CopAuto){
+            Iterator iter2 = this.sprite.iterator();
 
-          while(iter2.hasNext()){
-            Sprite s2 = (Sprite) iter2.next();
+            while(iter2.hasNext()){
+              Sprite s2 = (Sprite) iter2.next();
 
-            if(s.overlaps(s2) && s2 instanceof RobberAuto
-            && !((RobberAuto) s2).isCaptured() ){
-              ((RobberAuto) s2).captured();
+              if(s.overlaps(s2) && s2 instanceof RobberAuto
+              && !((RobberAuto) s2).isCaptured() ){
+                ((RobberAuto) s2).captured();
+              }
             }
           }
-        }
 
-        if(s instanceof RobberAuto){
-          if(((RobberAuto) s).hasEscaped()){
-            iter.remove();
+          if(s instanceof RobberAuto){
+            if(((RobberAuto) s).hasEscaped()){
+              iter.remove();
+            }
           }
-        }
 
-        s.updateState(w,h);
+          s.updateState(w,h);
+        }
       }
     }
 
